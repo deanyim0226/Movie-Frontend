@@ -1,0 +1,20 @@
+{
+  "baseUrl": "http://localhost:8081",
+  "searchUrl": "http://localhost:8082",
+  "billingUrl": "http://localhost:8083",
+
+  "idm": {
+    "login": "/login",
+    "register": "/register",
+    "search": "/movie/search",
+    "movieDetail": "/movie/",
+    "insertCart": "/cart/insert",
+    "retrieveCart": "/cart/retrieve",
+    "updateCart": "/cart/update",
+    "cartDelete": "/cart/delete/",
+    "cartClear": "/cart/clear",
+    "payment": "/order/payment",
+    "complete": "/order/complete",
+    "orderList": "/order/list"
+  }
+}
