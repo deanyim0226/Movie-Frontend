@@ -4,6 +4,27 @@ import {
     useStripe,
     useElements
 } from "@stripe/react-stripe-js";
+import styled from "styled-components";
+
+
+const StyledButton = styled.button`
+  margin-top: 1rem;
+ 
+  background-color: black;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 8em;
+
+  text-align: center;
+
+  height: 3em;
+  
+  cursor: pointer;
+  :hover{
+    color: #525252;
+  }
+`
 
 export default function CheckoutForm() {
     const stripe = useStripe();
@@ -79,11 +100,11 @@ export default function CheckoutForm() {
     return (
         <form id="payment-form" onSubmit={handleSubmit}>
             <PaymentElement id="payment-element" />
-            <button disabled={isLoading || !stripe || !elements} id="submit">
+            <StyledButton disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
-            </button>
+            </StyledButton>
             {/* Show any error or success messages */}
             {message && <div id="payment-message">{message}</div>}
         </form>

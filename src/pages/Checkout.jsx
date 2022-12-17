@@ -8,10 +8,36 @@ import Idm from "../backend/idm";
 import {useUser} from "../hook/User";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
-const StyledDiv = styled.div` 
+const Styledbody = styled.body`
+  background-image: url("https://cdn.pixabay.com/photo/2012/08/27/22/59/movie-projector-55122_960_720.png");
+  background-size: 100%;
+  width: 100%;
+  height: 52em;
 `
+const StyledH1 = styled.h1`
+  font-size: 2.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #ebebeb;
+  text-align: center;
+`
+const StyledDiv = styled.div`
+  opacity: 0.95;
+  display: flex;
+  flex-direction: column;
 
+  background-color: #f0f0f5;
+  width: 500px;
+  height: 510px;
+  
+  padding: 1em;
+  margin-top: 2em;
 
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #ebebeb;
+  box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.8);
+`
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is a public sample test API key.
@@ -52,13 +78,18 @@ const Checkout = () => {
     };
 
     return (
-            <div className="Checkout">
+            <Styledbody className="Checkout">
+                <StyledDiv>
+                    <StyledH1>
+                        Payment
+                    </StyledH1>
                 {clientSecret && (
                     <Elements options={options} stripe={stripePromise}>
                         <CheckoutForm />
                     </Elements>
                 )}
-            </div>
+                </StyledDiv>
+            </Styledbody>
     );
 
 

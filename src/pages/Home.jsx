@@ -7,7 +7,7 @@ const StyledDiv = styled.div`
 `
 
 const StyledImg = styled.img`
-    height: 100%;
+    height: 100vh;
     width: 100%;
 `
 

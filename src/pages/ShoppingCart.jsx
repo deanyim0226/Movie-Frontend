@@ -6,31 +6,122 @@ import {replaceBehavior} from "@testing-library/user-event/dist/keyboard/plugins
 import {useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";
 
-const StyledDiv = styled.div` 
+const StyledDiv = styled.div`
+  opacity: 0.95;
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f0f0f5;
+  width: 500px;
+  
+  padding: 1em;
+  margin-top: 2em;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #ebebeb;
+  box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.8);
 `
 
+const StyledName = styled.p`
+    color: pink;
+    display: inline-block;
+`
 const StyledH1 = styled.h1`
-    font-size: 30px;
+  font-size: 2.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #ebebeb;
+  text-align: center;
 `
-const StyledButton = styled.button`
-  width: 120px;
-  height: 30px;
+
+const Styledbody = styled.body`
+  background-image: url("https://cdn.pixabay.com/photo/2012/08/27/22/59/movie-projector-55122_960_720.png");
+  background-size: 100%;
+  width: 100%;
+
 `
+
+const Styledlayout = styled.div`
+  opacity: 0.95;
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f0f0f5;
+  width: 50em;
+  height: 45em;
+  
+  padding: 2em;
+  margin-top: 1.5em;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #ebebeb;
+  box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.8);
+`
+
 const SyledTable = styled.table`
-    padding: 0px;
-    width: auto;
-    border: black solid 1px;
-    
+  padding: 0px;
+  width: auto;
+  border: black solid 1px;
+
 `
-const SyledTD = styled.td`
-    width: auto;
-    border: black solid 1px;
+const StyledSelect = styled.select`
+
+  width: 100%;
+  border-radius: 10px;
+  font-size: 1.55em;
+  text-align: center;
   
 `
+const SyledTD = styled.td`
+  width: auto;
+  border: black solid 1px;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+
+`
 const SyledTH = styled.th`
-    width: auto;
-    border: black solid 1px;
-   
+  width: auto;
+  border: black solid 1px;
+  font-size: 20px;
+
+`
+const StyledButtonDetail = styled.button`
+  
+  background-color: #f0f0f5;
+  width: 100%;
+  height: 2em;
+  border: 1px solid  #f0f0f5 ;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  :hover{
+    color: red;
+  }
+`
+const StyledButton = styled.button`
+  margin-top: 1rem;
+  margin-left: 1.5em;
+  background-color: black;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 8em;
+  
+  padding-left: 10px;
+
+  text-align: center;
+  height: 2.7em;
+  
+  cursor: pointer;
+  :hover{
+    color: #525252;
+  }
 `
 //update cart or remove item
 //checkout button to nevigate purchase
@@ -122,22 +213,29 @@ const ShoppingCart = () => {
             })
     }
     return (
-        <StyledDiv>
+        <Styledbody>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+            <Styledlayout>
+                <StyledH1>
+                    Cart
+                </StyledH1>
+
             <SyledTable>
                 <tr>
+                    <SyledTH>Image</SyledTH>
                     <SyledTH>Movie Title</SyledTH>
                     <SyledTH>Quantity</SyledTH>
                     <SyledTH>Unit Price</SyledTH>
-                    <SyledTH><StyledButton onClick={handleSubmit(cartClear)}>Clear</StyledButton></SyledTH>
+                    <SyledTH><StyledButtonDetail onClick={handleSubmit(cartClear)}>Clear</StyledButtonDetail></SyledTH>
                 </tr>
 
                     {items &&
                         items.map(item =>
                             <tr>
-
+                                <SyledTD><img  src={"https://image.tmdb.org/t/p/original" + item.posterPath} width={"100%"} height={"70"} alt={"movie poster"}/></SyledTD>
                                 <SyledTD> {item.movieTitle}</SyledTD>
                                 <SyledTD>
-                                    <select value={item.quantity} onChange={event => updateCart(event,item.movieId)}>
+                                    <StyledSelect value={item.quantity} onChange={event => updateCart(event,item.movieId)}>
                                         <option value={1}>1</option>
                                         <option value={2}>2</option>
                                         <option value={3}>3</option>
@@ -148,11 +246,11 @@ const ShoppingCart = () => {
                                         <option value = {8}>8</option>
                                         <option value = {9}>9</option>
                                         <option value = {10}>10</option>
-                                    </select>
+                                    </StyledSelect>
 
                                 </SyledTD>
-                                <SyledTD> {item.unitPrice}</SyledTD>
-                                <StyledButton onClick={() =>navigate("/cart/delete/" + item.movieId)}>Delete</StyledButton>
+                                <SyledTD> ${item.unitPrice} </SyledTD>
+                                <SyledTD> <StyledButtonDetail  className="material-symbols-outlined" onClick={() =>navigate("/cart/delete/" + item.movieId)}>Delete</StyledButtonDetail> </SyledTD>
                             </tr>
                         )
                     }
@@ -160,13 +258,12 @@ const ShoppingCart = () => {
             </SyledTable>
 
             {total &&
-                <div>
-                    <StyledH1> [total] {total}  <StyledButton onClick = { () =>  navigate("/checkout") }>CheckOut</StyledButton> </StyledH1>
-
-                </div>
+                <StyledDiv>
+                    <StyledH1>  Total:  $ {total}  <StyledButton  className="material-symbols-outlined" onClick = { () =>  navigate("/checkout") }> payment</StyledButton> </StyledH1>
+                </StyledDiv>
             }
-
-        </StyledDiv>
+            </Styledlayout>
+        </Styledbody>
     );
 }
 

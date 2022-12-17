@@ -10,7 +10,37 @@ const StyledDiv = styled.div`
 `
 
 const StyledH1 = styled.h1`
+  font-size: 2.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #ebebeb;
+  text-align: center;
 `
+const Styledbody = styled.body`
+  background-image: url("https://cdn.pixabay.com/photo/2012/08/27/22/59/movie-projector-55122_960_720.png");
+  background-size: 100%;
+  width: 100%;
+
+`
+
+const Styledlayout = styled.div`
+  opacity: 0.95;
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f0f0f5;
+  width: 50em;
+  height: 45em;
+  
+  padding: 2em;
+  margin-top: 1.5em;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #ebebeb;
+  box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.8);
+`
+
 const StyledButton = styled.button`
   width: 255px;
 `
@@ -23,11 +53,14 @@ const SyledTable = styled.table`
 const SyledTD = styled.td`
     width: auto;
     border: black solid 1px;
+    font-size: 20px;
+    text-align: center;
   
 `
 const SyledTH = styled.th`
     width: auto;
     border: black solid 1px;
+    font-size: 20px;
    
 `
 //update cart or remove item
@@ -54,27 +87,30 @@ const OrderHistory = () => {
     },[])
 
     return (
-        <StyledDiv>
-
+        <Styledbody>
+            <Styledlayout>
+                <StyledH1>
+                    Order History
+                </StyledH1>
             <SyledTable>
                 <tr>
                     <SyledTH>SaleId</SyledTH>
-                    <SyledTH>Total</SyledTH>
                     <SyledTH>OrderDate</SyledTH>
+                    <SyledTH>Total</SyledTH>
                 </tr>
 
                 {sales &&
                     sales.map(sale =>
                         <tr>
                             <SyledTD> {sale.saleId}</SyledTD>
-                            <SyledTD> {sale.total}</SyledTD>
                             <SyledTD> {sale.orderDate}</SyledTD>
+                            <SyledTD> ${sale.total}</SyledTD>
                         </tr>
                     )
                 }
             </SyledTable>
-
-        </StyledDiv>
+            </Styledlayout>
+        </Styledbody>
     );
 }
 

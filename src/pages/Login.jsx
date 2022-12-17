@@ -5,8 +5,14 @@ import {useForm} from "react-hook-form";
 import Idm from "backend/idm";
 import {Link, useNavigate} from "react-router-dom";
 
+const Styledbody = styled.body`
+  background-image: url("https://cdn.pixabay.com/photo/2012/08/27/22/59/movie-projector-55122_960_720.png");
+  background-size: 100%;
+  width: 100%;
 
+`
 const StyledDiv = styled.div`
+  opacity: 0.95;
   display: flex;
   flex-direction: column;
   
@@ -167,7 +173,7 @@ const Login = () => {
     }
 
     return (
-
+        <Styledbody>
         <StyledDiv>
             <StyledH1>Login</StyledH1>
             <StyleLabel>
@@ -187,6 +193,8 @@ const Login = () => {
             </StyledP>
 
         </StyledDiv>
+
+        </Styledbody>
     );
 }
 
